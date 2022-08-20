@@ -1,0 +1,6 @@
+version: '3'
+services:
+  dicebot:
+    build:
+      context: .
+      dockerfile: Dockerfile
