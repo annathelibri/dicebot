@@ -7,3 +7,5 @@
 /LICENSE
 /README.md
 /.editorconfig
+/*.tar
+/yarn-error.log

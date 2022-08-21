@@ -4,6 +4,7 @@
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+/yarn-error.log
 
 # Swap the comments on the following lines if you don't wish to use zero-installs
 # Documentation here: https://yarnpkg.com/features/zero-installs
@@ -21,3 +22,4 @@
 /scripts/raw_logs/
 /scripts/merged/
 /scripts/lookup/
+/*.tar

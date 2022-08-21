@@ -1,7 +1,7 @@
 import { singleton } from 'tsyringe';
 import { chain, chunk } from 'lodash';
-import { RollemParserV1 } from '@rollem/language';
-import { ContainerV1 } from '@rollem/language/dist/types';
+import { RollemParserV1 } from '@adriantodt/rollem-language';
+import { ContainerV1 } from '@adriantodt/rollem-language/dist/types';
 
 @singleton()
 export class RollService {
