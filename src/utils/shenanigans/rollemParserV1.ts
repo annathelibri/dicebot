@@ -6,7 +6,11 @@ const snippetReplacement = `$1 = {
   ...require('crypto'),
   randomInt: (_min, _max, callback) => {
     let min = _max === undefined ? 0 : _min, max = _max === undefined ? _min : _max;
-    let i =  Math.floor(Math.min(1, Math.max(0, (Math.random() * 0.999 + (Math.random() * Math.random() * Math.random() * 0.29145)))) * (max - min + 1)) + min;
+    if (max < min) {
+      throw new RangeError('The value of "max" is out of range. It must be greater than the value of "min" (' + min + '). Received ' + max);
+    }
+    let r = Math.random() * 0.999 + (Math.random() * Math.random() * Math.random() * 0.29145);
+    let i = Math.min(max - 1, Math.max(min, Math.floor(r * (max - min)))) - min;
     if (callback) callback(i);
     return i;
   }
