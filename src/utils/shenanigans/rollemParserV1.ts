@@ -6,7 +6,7 @@ const snippetReplacement = `$1 = {
   ...require('crypto'),
   randomInt: (_min, _max, callback) => {
     let min = _max === undefined ? 0 : _min, max = _max === undefined ? _min : _max;
-    let i = Math.floor((Math.random() * 0.999 + (Math.random() * Math.random() * Math.random() * 0.29145)) * (max - min + 1)) + min;
+    let i =  Math.floor(Math.min(1, Math.max(0, (Math.random() * 0.999 + (Math.random() * Math.random() * Math.random() * 0.29145)))) * (max - min + 1)) + min;
     if (callback) callback(i);
     return i;
   }
