@@ -48,10 +48,10 @@ export class Application {
   }
 
   private specialHandling(): (message: Message, content: string) => Promise<boolean> {
-    const helpRegExp = /^h[ae]+lp+$/;
-    const flipRegExp = /^coin|flip|coinflip|flipcoin|flip *a? *coin$/;
-    const statRegExp = /^stat(?:istic)?s?|uptime$/;
-    const rollRegExp = /^roll(?: *a? *dic?e)?|dic?e$/;
+    const helpRegExp = /^h[ae]+lp+/;
+    const flipRegExp = /^(?:coin|flip|coinflip|flipcoin|flip *a? *coin)/;
+    const statRegExp = /^(?:stat(?:istic)?s?|uptime)/;
+    const rollRegExp = /^(?:roll *a? *(?:dic?e)?|dic?e|math|homework|r|&)\s*/;
 
     return async (message, content) => {
       const name = process.env.BOT_NAME ?? 'DragonDice';
@@ -69,12 +69,17 @@ export class Application {
         return true;
       }
       if (statRegExp.test(content)) {
-        await message.reply(`I've been up for ${this.uptime()}!`);
+        let guilds = this.client.guilds.valueOf().size;
+        await message.reply([
+          `> **${name}** - Stats:`,
+          ` · I've been up for ${this.uptime()}!`,
+          ` · I'm currently in ${guilds} guild${guilds === 1 ? '' : 's'}!`,
+        ].join('\n'));
         return true;
       }
       if (rollRegExp.test(content)) {
         const inner = content.substring(content.match(rollRegExp)![0].length);
-        const result = await this.roll.roll(inner);
+        const result = await this.roll.roll(inner.length > 0 ? inner : '1d20', false);
         if (result) {
           await message.reply(result);
         }

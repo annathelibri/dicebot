@@ -7,11 +7,11 @@ import { ContainerV1 } from '@rollem/language/dist/types';
 export class RollService {
   private readonly parser = new RollemParserV1();
 
-  public roll(content: string): string | null {
-    return this.rollMany(content) ?? this.rollGrouped(content) ?? this.rollFortune(content);
+  public roll(content: string, strict: boolean = true): string | null {
+    return this.rollMany(content, strict) ?? this.rollGrouped(content, strict) ?? this.rollFortune(content, strict);
   }
 
-  private rollFortune(content: string): string | null {
+  private rollFortune(content: string, strict: boolean = true): string | null {
     const match = content.match(/(?:fortune#\s*)?(.*)/i);
     if (!match) {
       return null;
@@ -22,7 +22,7 @@ export class RollService {
       return null;
     }
 
-    const headerLine = this.buildResponse(result);
+    const headerLine = this.buildResponse(result, strict);
     if (!headerLine) {
       return null;
     }
@@ -48,19 +48,17 @@ export class RollService {
       .groupBy()
       .entries()
       .flatMap(([key, values]) => {
-        const chunked = chunk(values, 5);
-        console.log(chunked);
-        return chunked.map(chunkSize => ({ value: key, count: chunkSize.length }));
+        return chunk(values, 5).map(chunkSize => ({ value: key, count: chunkSize.length }));
       })
       .sortBy(group => group.count, group => group.value)
       .reverse()
-      .map(group => `${group.count}x ${group.value} ${makeOreTag(group.count)}`)
+      .map(group => `${group.count}x [${group.value}] ${makeOreTag(group.count)}`)
       .value();
 
     return [headerLine, ...groupedValues].join('\n');
   }
 
-  private rollGrouped(content: string): string | null {
+  private rollGrouped(content: string, strict: boolean = true): string | null {
     const match = content.match(/(?:(ore|group|groupValue|groupCount|groupSize|groupHeight|groupWidth)#\s*)?(.*)/i);
     if (!(match && match[1])) {
       return null;
@@ -72,7 +70,7 @@ export class RollService {
       return null;
     }
 
-    const headerLine = this.buildResponse(result);
+    const headerLine = this.buildResponse(result, strict);
     if (!headerLine) {
       return null;
     }
@@ -101,7 +99,7 @@ export class RollService {
     return [headerLine, ...groupedValueLines].join('\n');
   }
 
-  private rollMany(content: string): string | null {
+  private rollMany(content: string, strict: boolean = true): string | null {
     let count = 1;
     const match = content.match(/(?:(\d+)#\s*)?(.*)/);
     const countRaw = match ? match[1] : false;
@@ -122,7 +120,7 @@ export class RollService {
         return null;
       }
 
-      const response = this.buildResponse(result);
+      const response = this.buildResponse(result, strict);
       if (response) {
         lines.push(response);
       }
@@ -134,11 +132,11 @@ export class RollService {
     return lines.join('\n');
   }
 
-  private buildResponse(result: ContainerV1) {
+  private buildResponse(result: ContainerV1, strict: boolean = true) {
     if (result.error) {
       return result.error;
     }
-    if (result.depth <= 1 || result.dice < 1) {
+    if (strict && (result.depth <= 1 /*|| result.dice < 1*/)) {
       return null;
     }
     let response = '';
@@ -149,7 +147,7 @@ export class RollService {
       result.value = result.value ? '**Success!**' : '**Failure!**';
     }
     //spacing out along with a nice formatting of the role number.
-    response += `🎲 ${result.value} ⟵ ${result.pretties.split(']').join('] ')}`;
+    response += `${result.dice < 1 ? '🔢' : '🎲'} ${result.value} ⟵ ${result.pretties.split(']').join('] ')}`;
     return response;
   }
 }

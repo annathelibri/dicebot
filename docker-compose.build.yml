@@ -4,3 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN}
+      BOT_PREFIX: ${BOT_PREFIX}
+      BOT_PREFIX_REGEX: ${BOT_PREFIX_REGEX}
+      BOT_MOTTO: ${BOT_MOTTO}
