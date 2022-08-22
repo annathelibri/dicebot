@@ -106,10 +106,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.5.tgz#1001cc5e6a3704b83c236027e77f2f58ea010f40"
   integrity sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==
 
-"@types/node@*", "@types/node@^18.7.8":
-  version "18.7.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.8.tgz#6bbf2be6fbf9c187a5040d4277d24a06a18957a1"
-  integrity sha512-/YP55EMK2341JkODUb8DM9O0x1SIz2aBvyF33Uf1c76St3VpsMXEIW0nxuKkq/5cxnbz0RD9cfwNZHEAZQD3ag==
+"@types/node@*", "@types/node@^18.7.9":
+  version "18.7.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.9.tgz#180bfc495c91dc62573967edf047e15dbdce1491"
+  integrity sha512-0N5Y1XAdcl865nDdjbO0m3T6FdmQ4ijE89/urOHLREyTXbpMWbSafx9y7XIsgWGtwUP2iYTinLyyW3FatAxBLQ==
 
 "@types/ws@^8.5.3":
   version "8.5.3"
@@ -245,7 +245,7 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
-discord-api-types@^0.36.3, discord-api-types@^0.37.3:
+discord-api-types@0.37.3, discord-api-types@^0.36.3, discord-api-types@^0.37.3:
   version "0.37.3"
   resolved "https://registry.yarnpkg.com/discord-api-types/-/discord-api-types-0.37.3.tgz#41e0139304d75b75e1e12d514eb28970bb9add04"
   integrity sha512-LWcx1jDL8zanQJOPwNmHdFQTr/PFflDw1VYoRmTjme7LEKLr2Qqa2uz04gjN0eNEYskM2TYkOvNn3H5rblFM6g==
@@ -524,7 +524,7 @@ parse5-htmlparser2-tree-adapter@^6.0.0:
   dependencies:
     parse5 "^6.0.1"
 
-parse5@^5.1.1, parse5@^6.0.1:
+parse5@6.0.1, parse5@^5.1.1, parse5@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
   integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
@@ -708,7 +708,7 @@ tsconfig-replace-paths@^0.0.11:
     globby "^10.0.1"
     json5 "^2.2.0"
 
-tslib@^1.9.3, tslib@^2.4.0:
+tslib@2.4.0, tslib@^1.9.3, tslib@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
