@@ -1,7 +1,7 @@
 {
   "name": "dicebot",
-  "version": "1.0.1",
-  "main": "index.js",
+  "version": "1.0.2",
+  "main": "dist/index.js",
   "license": "MIT",
   "dependencies": {
     "@adriantodt/rollem-language": "^2.7.2",
@@ -35,7 +35,6 @@
     "start": "yarn build && node dist/index.js"
   },
   "resolutions": {
-    "discord-api-types": "0.37.4",
     "tslib": "2.4.0",
     "parse5": "6.0.1"
   }
