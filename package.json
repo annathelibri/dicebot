@@ -10,7 +10,7 @@
     "cli-highlight": "^2.1.11",
     "discord-api-types": "^0.37.11",
     "discord.js": "^14.5.0",
-    "dotenv": "^16.0.2",
+    "dotenv": "^16.0.3",
     "erlpack": "^0.1.4",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
